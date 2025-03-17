@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños, Sara!</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            background: #0a0a23;
+            color: pink;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            opacity: 0;
+            animation: aparecer 2s forwards;
+        }
+        @keyframes aparecer {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .mensaje {
+            font-size: 1.2rem;
+            margin: 20px auto;
+            max-width: 80%;
+            line-height: 1.6;
+            color: #853c82;
+            opacity: 0;
+            animation: aparecer 2s 1s forwards;
+        }
+        .globo {
+            position: absolute;
+            bottom: -100px;
+            font-size: 2rem;
+            animation: subirGlobos 10s linear infinite;
+        }
+        @keyframes subirGlobos {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-110vh); }
+        }
+        .estrella {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: gold;
+            animation: brillar 2s infinite;
+        }
+        @keyframes brillar {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Estrellas de fondo -->
+    <div id="estrellas"></div>
+
+    <!-- Contenido principal -->
+    <div class="contenido">
+        <h1>¡Feliz 18º Cumpleaños, linda Sara!</h1>
+        <div class="mensaje" id="mensaje"></div>
+    </div>
+
+    <!-- Globos -->
+    <div class="globo" style="left: 5%;"></div>
+    <div class="globo" style="left: 15%;"></div>
+    <div class="globo" style="left: 30%;"></div>
+    <div class="globo" style="left: 40%;"></div>
+    <div class="globo" style="left: 55%;"></div>
+    <div class="globo" style="left: 65%;"></div>
+    <div class="globo" style="left: 80%;"></div>
+
+    <script>
+        // Crear estrellas de fondo
+        const estrellasContainer = document.getElementById('estrellas');
+        for (let i = 0; i < 100; i++) {
+            const estrella = document.createElement('div');
+            estrella.classList.add('estrella');
+            estrella.style.left = Math.random() * 100 + 'vw';
+            estrella.style.top = Math.random() * 100 + 'vh';
+            estrella.style.animationDuration = Math.random() * 2 + 1 + 's';
+            estrellasContainer.appendChild(estrella);
+        }
+
+        // Efecto de escritura en el mensaje
+        const mensaje = "Feliz cumpleaños, Sara, hoy es el día en que el universo decidió hacerle un upgrade a la perfección y traerte al mundo. No sé si felicitarte o felicitar a la suerte por ponerte en mi camino. Espero que este nuevo año de vida te traiga tantas cosas increíbles como tú lo eres (aunque dudo que algo pueda igualarte). Disfruta, sonríe y no dejes de brillar como siempre. Y si en algún momento necesitas a alguien que te recuerde lo increíble que eres... bueno, ya sabes a quién escribirle.";
+        let index = 0;
+        const velocidadEscritura = 50;
+
+        function escribirMensaje() {
+            if (index < mensaje.length) {
+                document.getElementById('mensaje').innerHTML += mensaje.charAt(index);
+                index++;
+                setTimeout(escribirMensaje, velocidadEscritura);
+            }
+        }
+
+        escribirMensaje();
+    </script>
+</body>
+</html>
